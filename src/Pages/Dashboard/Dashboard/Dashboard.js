@@ -18,11 +18,10 @@ import Typography from '@mui/material/Typography';
 import {
     Switch,
     Route,
-    Link,
+    NavLink,
     useRouteMatch
 } from "react-router-dom";
 import { Button } from '@mui/material';
-//import {NavLink } from 'react-router-dom';
 import DashboardHome from '../DashboardHome/DashboardHome'
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddDoctor from '../AddDoctor/AddDoctor';
@@ -37,7 +36,7 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
-  const {admin}=useAuth();
+  const {user,admin}=useAuth();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -47,13 +46,13 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
 
-        <Link to="/"><Button color="inherit">Home</Button></Link>
-        <Link to="/appointment"><Button color="inherit">Appointment</Button></Link>
-        <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
+        <NavLink to="/" style={{ textDecoration: 'none' }}><Button color="inherit">Home</Button></NavLink>
+        <NavLink to="/appointment" style={{ textDecoration: 'none'}}><Button color="inherit">Appointment</Button></NavLink>
+        <NavLink to={`${url}`} style={{ textDecoration: 'none' }}><Button color="inherit">Dashboard</Button></NavLink>
         {admin && 
             <Box>
-                <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
-                <Link to={`${url}/addDoctor`}><Button color="inherit">Add Doctor</Button></Link>
+                <NavLink to={`${url}/makeAdmin`} style={{ textDecoration: 'none'}}><Button color="inherit">Make Admin</Button> </NavLink>
+                <NavLink to={`${url}/addDoctor`} style={{ textDecoration: 'none'}}><Button color="inherit">Add Doctor</Button></NavLink>
             </Box>
         }
       <List>
@@ -93,7 +92,7 @@ function Dashboard(props) {
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-                Dashboard
+                Welcome Mr <span>{user.displayName}</span>
             </Typography>
         </Toolbar>
     </AppBar>
