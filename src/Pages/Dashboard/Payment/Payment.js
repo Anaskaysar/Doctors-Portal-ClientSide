@@ -12,7 +12,7 @@ const Payment = () => {
     const {appointmentId}=useParams();
     const [appointment, setAppointment] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/appoinments/${appointmentId}`)
+        fetch(`https://powerful-citadel-74868.herokuapp.com/appoinments/${appointmentId}`)
             .then(res => res.json())
             .then(data => setAppointment(data));
     }, [appointmentId]);

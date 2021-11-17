@@ -16,7 +16,7 @@ const CheckoutForm = ({ appointment }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://powerful-citadel-74868.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -84,7 +84,8 @@ const CheckoutForm = ({ appointment }) => {
                 transaction: paymentIntent.client_secret.slice('_secret')[0]
             }
 
-            const url = `http://localhost:5000/appoinments//${_id}`;
+            const url = `https://powerful-citadel-74868.herokuapp.com/appoinments/${_id}`;
+            console.log(payment);
             fetch(url, {
                 method: 'PUT',
                 headers: {
